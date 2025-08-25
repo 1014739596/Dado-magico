@@ -1,0 +1,229 @@
+:root {
+    --bg: #0f172a;
+    --card: #111827;
+    --text: #e5e7eb;
+    --accent: #22d3ee;
+    --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Arial;
+    color: var(--text);
+    background: radial-gradient(1200px 600px at 10% -20%, #1e293b 0%, transparent 60%), radial-gradient(1000px 600px at 110% 120%, #0ea5e9 0%, transparent 50%), var(--bg);
+}
+
+.app {
+    min-height: 100%;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+}
+
+.title {
+    text-align: center;
+    margin: 0 0 10px;
+    font-weight: 700;
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+}
+
+.board {
+    width: min(520px, 92vw);
+    background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .02));
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, .06);
+    border-radius: 22px;
+    padding: 22px 22px 26px;
+    box-shadow: var(--shadow);
+    display: grid;
+    justify-items: center;
+    gap: 16px;
+}
+
+
+/* Dado responsivo */
+
+.die {
+    width: clamp(90px, 25vw, 150px);
+    aspect-ratio: 1 / 1;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #ffffff, #f3f4f6);
+    box-shadow: inset 0 3px 0 rgba(255, 255, 255, .7), 0 18px 40px rgba(0, 0, 0, .3);
+    position: relative;
+    display: grid;
+    place-items: center;
+    transform-style: preserve-3d;
+}
+
+.dot {
+    width: clamp(12px, 5vw, 22px);
+    height: clamp(12px, 5vw, 22px);
+    background: radial-gradient(circle at 35% 35%, #111 0 30%, #000 65%, #111 100%);
+    border-radius: 50%;
+    position: absolute;
+    opacity: 0;
+    transform: translateZ(1px);
+}
+
+
+/* Posiciones */
+
+.pos-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateZ(1px);
+}
+
+.pos-tl {
+    top: 20%;
+    left: 20%;
+}
+
+.pos-tr {
+    top: 20%;
+    right: 20%;
+}
+
+.pos-ml {
+    top: 50%;
+    left: 20%;
+    transform: translateY(-50%) translateZ(1px);
+}
+
+.pos-mr {
+    top: 50%;
+    right: 20%;
+    transform: translateY(-50%) translateZ(1px);
+}
+
+.pos-bl {
+    bottom: 20%;
+    left: 20%;
+}
+
+.pos-br {
+    bottom: 20%;
+    right: 20%;
+}
+
+
+/* Caras visibles */
+
+.die.face-1 .pos-center,
+.die.face-2 .pos-tl,
+.die.face-2 .pos-br,
+.die.face-3 .pos-center,
+.die.face-3 .pos-tl,
+.die.face-3 .pos-br,
+.die.face-4 .pos-tl,
+.die.face-4 .pos-tr,
+.die.face-4 .pos-bl,
+.die.face-4 .pos-br,
+.die.face-5 .pos-center,
+.die.face-5 .pos-tl,
+.die.face-5 .pos-tr,
+.die.face-5 .pos-bl,
+.die.face-5 .pos-br,
+.die.face-6 .pos-tl,
+.die.face-6 .pos-tr,
+.die.face-6 .pos-ml,
+.die.face-6 .pos-mr,
+.die.face-6 .pos-bl,
+.die.face-6 .pos-br {
+    opacity: 1;
+}
+
+
+/* Animación */
+
+.die.rolling {
+    animation: shake .7s cubic-bezier(.25, .8, .25, 1);
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate3d(1, 1, 0, 0deg);
+    }
+    20% {
+        transform: rotate3d(1, 0, 1, 12deg);
+    }
+    40% {
+        transform: rotate3d(0, 1, 1, -12deg);
+    }
+    60% {
+        transform: rotate3d(1, 1, 0, 10deg);
+    }
+    80% {
+        transform: rotate3d(0, 1, 1, -10deg);
+    }
+    100% {
+        transform: rotate3d(1, 1, 0, 0deg);
+    }
+}
+
+.result {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    margin: 6px 0 2px;
+    opacity: .9;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    cursor: pointer;
+    padding: 10px 18px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, #22d3ee, #0891b2);
+    color: #042f2e;
+    font-weight: 700;
+    border: none;
+    box-shadow: 0 8px 20px rgba(8, 145, 178, .45);
+    transition: transform .06s ease, filter .2s ease;
+    font-size: clamp(0.9rem, 3vw, 1rem);
+}
+
+.btn:active {
+    transform: translateY(1px) scale(.99);
+}
+
+.btn:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+.toggle {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    user-select: none;
+    font-size: .95rem;
+}
+
+.hint {
+    font-size: .85rem;
+    opacity: .7;
+    margin: 0;
+    text-align: center;
+}
+
+
+/* Ajustes móviles muy pequeños */
+
+@media (max-width: 360px) {
+    .controls {
+        flex-direction: column;
+        gap: 8px;
+    }
+}

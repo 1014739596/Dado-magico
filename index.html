@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Lanzar Dado</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <main class="app">
+        <h1 class="title">🎲 Lanzar Dado</h1>
+
+        <section class="board">
+            <div id="die" class="die" aria-label="dado" role="img" data-value="1">
+                <span class="dot pos-center"></span>
+                <span class="dot pos-tl"></span>
+                <span class="dot pos-tr"></span>
+                <span class="dot pos-ml"></span>
+                <span class="dot pos-mr"></span>
+                <span class="dot pos-bl"></span>
+                <span class="dot pos-br"></span>
+            </div>
+
+            <p id="result" class="result" aria-live="polite">Resultado: 1</p>
+
+            <div class="controls">
+                <button id="rollBtn" class="btn">Lanzar</button>
+                <label class="toggle">
+          <input id="soundToggle" type="checkbox" />
+          <span>Sonido</span>
+        </label>
+            </div>
+
+            <p class="hint">Tip: también puedes presionar la barra espaciadora.</p>
+        </section>
+    </main>
+
+    <audio id="rollSound" preload="auto"></audio>
+</body>
+
+</html>
